@@ -18,7 +18,7 @@ class Fraction extends StatelessWidget {
           Text(upperSymbol),
           Container(
             height: 2,
-            width: 20,
+            width: 50,
             color: Colors.blue,
           ),
           Text(downSymbol)

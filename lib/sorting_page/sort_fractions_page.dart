@@ -9,23 +9,35 @@ class SortFractionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const PrimaryAppBar(),
-      body: SizedBox(
-        height: double.infinity,
-        width: double.infinity,
-        child: GridPaper(
-          color: Colors.blue,
-          interval: 200,
-          divisions: 1,
-          subdivisions: 8,
-          child: Column(
-            children: const [
-              Fraction(
-                downSymbol: '4',
-                upperSymbol: '7',
-              ),
-            ],
+      body: Column(
+        children: [
+          Draggable<Fraction>(
+            feedback: const Fraction(
+              upperSymbol: '2137',
+              downSymbol: '420',
+            ),
+            childWhenDragging: Container(
+              color: Colors.white,
+            ),
+            child: const Fraction(
+              upperSymbol: '2137',
+              downSymbol: '420',
+            ),
           ),
-        ),
+          DragTarget<Fraction>(
+            builder: (
+              BuildContext context,
+              List<dynamic> accepted,
+              List<dynamic> rejected,
+            ) {
+              return Container(
+                height: 100.0,
+                width: 100.0,
+                color: Colors.cyan,
+              );
+            },
+          ),
+        ],
       ),
     );
   }
