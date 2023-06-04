@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_world_of_fractions/reusables/my_app_bar.dart';
+import 'package:fraction/fraction.dart';
 
 class AddSubstractPage extends StatefulWidget {
   const AddSubstractPage({super.key});
@@ -9,11 +9,11 @@ class AddSubstractPage extends StatefulWidget {
 }
 
 class AddSubstractPageState extends State<AddSubstractPage> {
-  List<Map<String, dynamic>> equations = const [
-    {'equation': '16 + 17', 'result': 33},
-    {'equation': '33 + 77', 'result': 110},
-    {'equation': '29 - 13', 'result': 16},
-    {'equation': '420 - 69', 'result': 351},
+  List<Map<String, dynamic>> equations = [
+    {'equation': '1/2 + 1/3', 'result': Fraction(5, 6)},
+    {'equation': '3/7 + 4/14', 'result': Fraction(5, 7)},
+    {'equation': '3/4 - 1/2', 'result': Fraction(1, 4)},
+    {'equation': '7/10 - 2/5', 'result': Fraction(3, 10)},
   ];
 
   List<bool?> results = List.filled(4, null);
@@ -46,6 +46,16 @@ class AddSubstractPageState extends State<AddSubstractPage> {
                 ),
               ),
             ),
+            const Padding(
+              padding: EdgeInsets.only(left: 16),
+              child: Text(
+                'Uwaga! Odpowiedź wpisz w postaci ułamka zwykłego (np. 1/2 zamiast 0.5)',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
             const SizedBox(height: 16),
             for (int i = 0; i < equations.length; i++) ...[
               buildEquationCard(i),
@@ -72,7 +82,7 @@ class AddSubstractPageState extends State<AddSubstractPage> {
   Widget buildEquationCard(int index) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -84,10 +94,10 @@ class AddSubstractPageState extends State<AddSubstractPage> {
             TextField(
               onChanged: (value) {
                 setState(() {
-                  results[index] = int.tryParse(value) == equations[index]['result'];
+                  Fraction answer = Fraction.fromString(value);
+                  results[index] = answer == equations[index]['result'];
                 });
               },
-              keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                 hintText: 'Wprowadź odpowiedź',
                 border: OutlineInputBorder(),
