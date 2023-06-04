@@ -14,15 +14,15 @@ class ReducingFractionsPage extends StatefulWidget {
 }
 
 class _SelectModeState extends State<ReducingFractionsPage> {
-  int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
+  int selectedIndex = 0;
+  static const List widgetOptions = [
     ReducingFractionsLearnPage(),
-    ReducingFractionsExercisesPage()
+    ReducingFractionsExercisesPage(),
   ];
 
-  void _onItemTapped(int index) {
+  void onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectedIndex = index;
     });
   }
 
@@ -30,15 +30,15 @@ class _SelectModeState extends State<ReducingFractionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Skracanie Ułamków"),
+        title: const Text("Skracanie Ułamków",),
         actions: [
           SizedBox(
-            child: Image.asset('assets/images/panSpinacz.png'),
+            child: Image.asset('assets/images/panSpinacz.png',),
           )
         ],
       ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: widgetOptions.elementAt(selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -51,9 +51,9 @@ class _SelectModeState extends State<ReducingFractionsPage> {
             label: 'Ćwiczenia',
           )
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: selectedIndex,
         selectedItemColor: Colors.purple,
-        onTap: _onItemTapped,
+        onTap: onItemTapped,
       ),
     );
   }

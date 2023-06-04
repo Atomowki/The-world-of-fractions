@@ -7,6 +7,6 @@ class ReducingFractionsLearnPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("Strona do nauki skracania ułamków");
+    return const Text("Strona do nauki skracania ułamków",);
   }
 }

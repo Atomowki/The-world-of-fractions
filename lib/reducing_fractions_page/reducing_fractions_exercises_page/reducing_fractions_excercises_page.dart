@@ -7,6 +7,6 @@ class ReducingFractionsExercisesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("Tu będą ćwiczenia");
+    return const Text("Tu będą ćwiczenia",);
   }
 }
