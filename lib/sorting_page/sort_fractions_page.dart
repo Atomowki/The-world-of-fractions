@@ -74,23 +74,17 @@ class _SortFractionsPageState extends State<SortFractionsPage> {
 
     double calc1 = f1Up / f1Dw;
     double calc2 = f2Up / f2Dw;
-    print(calc1);
-    print(calc2);
-    print("wynik = ${calc1.compareTo(calc2)}");
 
     bool answer = false;
     switch (symbol) {
       case "<":
         answer = calc1 < calc2;
-        print("case 1:  ${answer}");
         break;
       case ">":
         answer = calc1 > calc2;
-        print("case 2:  ${answer}");
         break;
       default:
     }
-    print(answer);
     return answer;
   }
 
