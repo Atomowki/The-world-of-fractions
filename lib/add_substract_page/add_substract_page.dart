@@ -18,8 +18,6 @@ class AddSubstractPageState extends State<AddSubstractPage> {
 
   List<bool?> results = List.filled(4, null);
 
-
-
   @override
   Widget build(BuildContext context) {
     bool allAnswersCorrect = results.every((result) => result == true);

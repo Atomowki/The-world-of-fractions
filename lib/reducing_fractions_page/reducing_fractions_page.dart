@@ -30,10 +30,14 @@ class _SelectModeState extends State<ReducingFractionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Skracanie Ułamków",),
+        title: const Text(
+          "Skracanie Ułamków",
+        ),
         actions: [
           SizedBox(
-            child: Image.asset('assets/images/panSpinacz.png',),
+            child: Image.asset(
+              'assets/images/panSpinacz.png',
+            ),
           )
         ],
       ),
