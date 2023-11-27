@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   fluttertoast: ^8.2.2
   fraction: ^4.1.4
+  flutter_tex: ^4.0.3+4
 
 dev_dependencies:
   flutter_test:
