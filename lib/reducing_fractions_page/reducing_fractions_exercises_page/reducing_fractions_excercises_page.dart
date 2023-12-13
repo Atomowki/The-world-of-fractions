@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fraction/fraction.dart';
+import 'package:flutter_tex/flutter_tex.dart';
 
 class ReducingFractionsExercisesPage extends StatefulWidget {
   const ReducingFractionsExercisesPage({super.key});
@@ -11,10 +12,10 @@ class ReducingFractionsExercisesPage extends StatefulWidget {
 
 class ReducingFractionsPageState extends State<ReducingFractionsExercisesPage> {
   List<Map<String, dynamic>> examples = [
-    {'number': '3/6', 'result': Fraction(1, 2)},
-    {'number': '7/14', 'result': Fraction(1, 2)},
-    {'number': '6/16', 'result': Fraction(3, 8)},
-    {'number': '21/24', 'result': Fraction(7, 8)},
+    {'number': r'\(\frac{3}{6}\)', 'result': Fraction(1, 2)},
+    {'number': r'\(\frac{7}{14}\)', 'result': Fraction(1, 2)},
+    {'number': r'\(\frac{6}{16}\)', 'result': Fraction(3, 8)},
+    {'number': r'\(\frac{21}{24}\)', 'result': Fraction(7, 8)},
   ];
 
   List<bool?> results = List.filled(4, null);
@@ -77,17 +78,24 @@ class ReducingFractionsPageState extends State<ReducingFractionsExercisesPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              examples[index]['number'],
-              style: const TextStyle(fontSize: 18),
+            Container(
+              height: 30.0,
+              child: TeXView(
+                renderingEngine: TeXViewRenderingEngine.katex(),
+                child: TeXViewDocument(examples[index]['number']),
+              ),
             ),
             const SizedBox(height: 8),
             TextField(
               onChanged: (value) {
                 setState(() {
-                  Fraction answer = Fraction.fromString(value);
-                  results[index] = answer.toString() ==
-                      examples[index]['result'].reduce().toString();
+                  if (value.isEmpty) {
+                    results[index] = null;
+                  } else {
+                    Fraction answer = Fraction.fromString(value);
+                    results[index] = answer.toString() ==
+                        examples[index]['result'].reduce().toString();
+                  }
                 });
               },
               decoration: const InputDecoration(

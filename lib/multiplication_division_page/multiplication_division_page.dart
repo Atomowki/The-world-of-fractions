@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fraction/fraction.dart';
+import 'package:flutter_tex/flutter_tex.dart';
 
 class MultiplicationDivisionPage extends StatefulWidget {
   const MultiplicationDivisionPage({super.key});
@@ -10,14 +11,13 @@ class MultiplicationDivisionPage extends StatefulWidget {
 
 class MultiplicationDivisionPageState extends State<MultiplicationDivisionPage> {
   List<Map<String, dynamic>> equations = [
-    {'equation': '1/2 * 1/3', 'result': Fraction(1, 6)},
-    {'equation': '1/4 * 4/14', 'result': Fraction(1, 14)},
-    {'equation': '3/4 : 1/2', 'result': Fraction(6, 4)},
-    {'equation': '8/10 : 2/5', 'result': Fraction(2, 1)},
+    {'equation': r'\(\frac{1}{2} * \frac{1}{3}\)', 'result': Fraction(1, 6)},
+    {'equation': r'\(\frac{1}{4} * \frac{4}{14}\)', 'result': Fraction(1, 14)},
+    {'equation': r'\(\frac{3}{4} : \frac{1}{2}\)', 'result': Fraction(6, 4)},
+    {'equation': r'\(\frac{8}{10} : \frac{2}{5}\)', 'result': Fraction(2, 1)},
   ];
 
   List<bool?> results = List.filled(4, null);
-
 
 
   @override
@@ -86,16 +86,23 @@ class MultiplicationDivisionPageState extends State<MultiplicationDivisionPage> 
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              equations[index]['equation'],
-              style: const TextStyle(fontSize: 18),
+            Container(
+              height: 30.0,
+              child: TeXView(
+                renderingEngine: TeXViewRenderingEngine.katex(),
+                child: TeXViewDocument(equations[index]['equation']),
+              ),
             ),
             const SizedBox(height: 8),
             TextField(
               onChanged: (value) {
                 setState(() {
-                  Fraction answer = Fraction.fromString(value);
-                  results[index] = answer == equations[index]['result'];
+                  if (value.isEmpty) {
+                    results[index] = null;
+                  } else {
+                    Fraction answer = Fraction.fromString(value);
+                    results[index] = answer == equations[index]['result'];
+                  }
                 });
               },
               decoration: const InputDecoration(
