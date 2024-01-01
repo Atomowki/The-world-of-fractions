@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fraction/fraction.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 
+import '../reusables/import_examples.dart';
+
 class MultiplicationDivisionPage extends StatefulWidget {
   const MultiplicationDivisionPage({super.key});
 
@@ -17,7 +19,7 @@ class MultiplicationDivisionPageState extends State<MultiplicationDivisionPage> 
     {'equation': r'\(\frac{8}{10} : \frac{2}{5}\)', 'result': Fraction(2, 1)},
   ];
 
-  List<bool?> results = List.filled(4, null);
+  List<bool?> results = List.generate(4, (_) => null);
 
 
   @override
@@ -28,6 +30,32 @@ class MultiplicationDivisionPageState extends State<MultiplicationDivisionPage> 
       appBar: AppBar(
         title: const Text('Dodawanie i Odejmowanie'),
         actions: [
+          SizedBox(
+              child: CSVUploader(
+                  buttonText: 'Importuj przykłady',
+                  onDataLoaded: (data) {
+                    if(data.isNotEmpty) {
+                      for(List<dynamic> line in data) {
+                        if(line.length != 7) {
+                          continue;
+                        }
+
+                        var expectedResult = Fraction(int.parse(line[5]),int.parse(line[6]));
+
+                        var equation = r'\(\frac{' + line[0] + '}{' + line[1] + '} ' + line[2] + r'\frac{' + line[3] + '}{' + line[4] + r'}\)';
+
+                        equations.add( {
+                          'equation': equation,
+                          'result': expectedResult
+                        });
+
+                        results.add(null);
+                      }
+                    }
+                    setState(() {});
+                  }
+              )
+          ),
           SizedBox(
             child: Image.asset('assets/images/panSpinacz.png'),
           )
