@@ -103,7 +103,7 @@ class _SortFractionsPageState extends State<SortFractionsPage> {
       );
     } else {
       Fluttertoast.showToast(
-        msg: "Nie powiodło się",
+        msg: "Spróbuj jeszcze raz",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
