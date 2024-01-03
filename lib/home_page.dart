@@ -5,6 +5,7 @@ import 'package:the_world_of_fractions/multiplication_division_page/multiplicati
 import 'package:the_world_of_fractions/reducing_fractions_page/reducing_fractions_page.dart';
 import 'package:the_world_of_fractions/reusables/su_primary_button.dart';
 import 'package:the_world_of_fractions/sorting_page/sort_fractions_page.dart';
+import 'package:the_world_of_fractions/test_path/test_path.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -83,6 +84,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const ReducingFractionsPage(),
+                  ),
+                );
+              },
+            ),
+            SUPrimaryButton(
+              text: "Ścieżka testowa",
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const TestPath(),
                   ),
                 );
               },
