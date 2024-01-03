@@ -68,6 +68,13 @@ flutter:
     - assets/images/background.jpg
     - assets/images/kot.png
     - assets/images/gigachad.png
+    - assets/images/dod.png
+    - assets/images/dod2.png
+    - assets/images/dod3.png
+    - assets/images/ode.png
+    - assets/images/mn1.png
+    - assets/images/mn2.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:the_world_of_fractions/add_substract_page/add_substract_main.dart';
 import 'package:the_world_of_fractions/add_substract_page/add_substract_page.dart';
 import 'package:the_world_of_fractions/common_denominator_page/common_denominator_page.dart';
+import 'package:the_world_of_fractions/multiplication_division_page/multi_main.dart';
 import 'package:the_world_of_fractions/multiplication_division_page/multiplication_division_page.dart';
 import 'package:the_world_of_fractions/reducing_fractions_page/reducing_fractions_page.dart';
 import 'package:the_world_of_fractions/reusables/su_primary_button.dart';
@@ -63,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const AddSubstractPage(),
+                    builder: (context) => const AddMain(),
                   ),
                 );
               },
@@ -73,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const MultiplicationDivisionPage(),
+                    builder: (context) => const MultiMain(),
                   ),
                 );
               },
