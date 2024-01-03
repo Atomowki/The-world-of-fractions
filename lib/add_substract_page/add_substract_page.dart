@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fraction/fraction.dart';
 import 'package:flutter_tex/flutter_tex.dart';
+import 'package:the_world_of_fractions/reusables/import_examples.dart';
 
 class AddSubstractPage extends StatefulWidget {
   const AddSubstractPage({super.key});
@@ -17,7 +18,7 @@ class AddSubstractPageState extends State<AddSubstractPage> {
     {'equation': r'\(\frac{7}{10} - \frac{2}{5}\)', 'result': Fraction(3, 10)},
   ];
 
-  List<bool?> results = List.filled(4, null);
+  List<bool?> results = List.generate(4, (_) => null);
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,32 @@ class AddSubstractPageState extends State<AddSubstractPage> {
       appBar: AppBar(
         title: const Text('Dodawanie i Odejmowanie'),
         actions: [
+          SizedBox(
+            child: CSVUploader(
+              buttonText: 'Importuj przykłady',
+              onDataLoaded: (data) {
+                if(data.isNotEmpty) {
+                  for(List<dynamic> line in data) {
+                    if(line.length != 7) {
+                      continue;
+                    }
+
+                    var expectedResult = Fraction(int.parse(line[5]),int.parse(line[6]));
+
+                    var equation = r'\(\frac{' + line[0] + '}{' + line[1] + '} ' + line[2] + r'\frac{' + line[3] + '}{' + line[4] + r'}\)';
+
+                    equations.add( {
+                      'equation': equation,
+                      'result': expectedResult
+                    });
+
+                    results.add(null);
+                  }
+                }
+                setState(() {});
+              }
+            )
+          ),
           SizedBox(
             child: Image.asset('assets/images/panSpinacz.png'),
           )
