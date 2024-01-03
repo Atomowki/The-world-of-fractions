@@ -28,7 +28,7 @@ class MultiplicationDivisionPageState extends State<MultiplicationDivisionPage> 
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dodawanie i Odejmowanie'),
+        title: const Text('Mnożenie i dzielenie'),
         actions: [
           SizedBox(
               child: CSVUploader(

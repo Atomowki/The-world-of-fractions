@@ -87,16 +87,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-            SUPrimaryButton(
-              text: "Uwspólnianie mianownika",
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const CommonDenominatorPage(),
-                  ),
-                );
-              },
-            ),
           ],
         ),
       ),
